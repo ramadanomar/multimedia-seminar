@@ -1,28 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Canvas BarChart</title>
-</head>
-<body>
-    <form>
-        <input type="text" value="1, 2, 3">
-        <button>Draw chart</button>
+  </head>
+  <body>
+    <form id="chart-form">
+      <input type="text" id="chart-values" value="1, 2, 3" />
+      <button>Draw chart</button>
     </form>
     <canvas id="canvas-chart">
-        Your browser does not support the canvas element.
+      Your browser does not support the canvas element.
     </canvas>
 
     <script src="canvas-bar-chart-library.js"></script>
     <script>
-        "use strict";
+      "use strict";
 
-        const canvasChart = document.getElementById('canvas-chart');
-        const barChart = new BarChart(canvasChart);
-        barChart.draw([1,2,3]);
+      const canvasChart = document.getElementById("canvas-chart");
+      const barChart = new BarChart(canvasChart);
 
+      document.getElementById("chart-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const input = document.getElementById("chart-values").value;
+        const values = input.split(",").map(Number);
+        barChart.draw(values);
+      });
     </script>
-</body>
+  </body>
 </html>
