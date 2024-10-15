@@ -26,9 +26,11 @@ class BarChart {
 
     const barWidth = this.#canvas.width / values.length;
 
-    context.fillStyle = "red"; // #FF0000
     for (let i = 0; i < values.length; i++) {
       const barX = i * barWidth;
+      context.fillStyle = "red"; // #FF0000
+      context.strokeStyle = "#5e0808";
+      context.lineWidth = 2; // grosimea liniei
 
       // inmultim cu 0.9 ca sa fie lungimea mai mica (90% din canvas height)
       const barHeight = values[i] * f * 0.9;
@@ -37,9 +39,13 @@ class BarChart {
 
       context.fillRect(barX + barWidth / 4, barY, barWidth / 2, barHeight);
 
-      // Tema
-      context.strokeStyle = "#5e0808";
+      // Barchart outline
       context.strokeRect(barX + barWidth / 4, barY, barWidth / 2, barHeight);
+
+      context.fillStyle = "black";
+      context.font = "12px Arial";
+      context.textAlign = "center";
+      context.fillText(values[i], barX + barWidth / 2, this.#canvas.height - 5);
     }
   }
 }
