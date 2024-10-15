@@ -7,8 +7,8 @@
     <title>Canvas BarChart</title>
   </head>
   <body>
-    <form>
-      <input type="text" value="1, 2, 3" />
+    <form id="chart-form">
+      <input type="text" id="chart-values" value="1, 2, 3" />
       <button>Draw chart</button>
     </form>
     <canvas id="canvas-chart">
@@ -21,7 +21,15 @@
 
       const canvasChart = document.getElementById("canvas-chart");
       const barChart = new BarChart(canvasChart);
-      barChart.draw([1, 2, 3]);
+
+      document
+        .getElementById("chart-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          const input = document.getElementById("chart-values").value;
+          const values = input.split(",").map(Number);
+          barChart.draw(values);
+        });
     </script>
   </body>
 </html>
