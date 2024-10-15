@@ -22,14 +22,12 @@
       const canvasChart = document.getElementById("canvas-chart");
       const barChart = new BarChart(canvasChart);
 
-      document
-        .getElementById("chart-form")
-        .addEventListener("submit", function (event) {
-          event.preventDefault();
-          const input = document.getElementById("chart-values").value;
-          const values = input.split(",").map(Number);
-          barChart.draw(values);
-        });
+      document.getElementById("chart-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const input = document.getElementById("chart-values").value;
+        const values = input.split(",").map(Number);
+        barChart.draw(values);
+      });
     </script>
   </body>
 </html>
